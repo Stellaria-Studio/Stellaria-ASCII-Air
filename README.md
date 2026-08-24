@@ -23,6 +23,8 @@ Stellaria ASCII Air is a standalone browser air-combat game. Its flight, terrain
 
 Requirements: Node.js 22.13 or newer.
 
+For a ready-to-run copy, download either the standalone HTML or the complete ZIP bundle from [GitHub Releases](https://github.com/Stellaria-Studio/Stellaria-ASCII-Air/releases). The HTML can be opened directly in the latest Chrome, Edge, or Chromium.
+
 ```bash
 npm ci
 npm run dev

@@ -17,7 +17,7 @@
     "prebuild": "node tools/build-shaders.mjs",
     "build": "vinext build",
     "prebuild:standalone": "node tools/build-shaders.mjs",
-    "build:standalone": "vite build --config vite.standalone.config.ts && cp standalone/README.txt release/ascii-sky-webapp/README.txt && cp public/USER_GUIDE_CN.md release/ascii-sky-webapp/USER_GUIDE_CN.md",
+    "build:standalone": "vite build --config vite.standalone.config.ts && cp standalone/README.txt release/ascii-sky-webapp/README.txt && cp public/USER_GUIDE_CN.md release/ascii-sky-webapp/USER_GUIDE_CN.md && cp LICENSE release/ascii-sky-webapp/LICENSE",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },

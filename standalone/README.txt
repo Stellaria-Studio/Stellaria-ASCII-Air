@@ -1,6 +1,9 @@
 ASCII SKY // ST COMBAT SYSTEM
 ============================
 
+Source, updates, and MIT license:
+https://github.com/Stellaria-Studio/Stellaria-ASCII-Air
+
 完整操作、HUD、雷达、武器、失速/尾旋和损伤说明见同目录 USER_GUIDE_CN.md。
 
 本地运行：
