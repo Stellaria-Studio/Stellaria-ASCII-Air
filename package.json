@@ -1,0 +1,51 @@
+{
+  "name": "stellaria-ascii-air",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A standalone ASCII-styled 3D air-combat Web App with StSL/WebGPU presentation.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stellaria-Studio/Stellaria-ASCII-Air.git"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "predev": "node tools/build-shaders.mjs",
+    "dev": "vinext dev",
+    "prebuild": "node tools/build-shaders.mjs",
+    "build": "vinext build",
+    "prebuild:standalone": "node tools/build-shaders.mjs",
+    "build:standalone": "vite build --config vite.standalone.config.ts && cp standalone/README.txt release/ascii-sky-webapp/README.txt && cp public/USER_GUIDE_CN.md release/ascii-sky-webapp/USER_GUIDE_CN.md",
+    "start": "vinext start",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
+  },
+  "dependencies": {
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@cloudflare/workers-types": "4.20260515.1",
+    "@openai/sites-vite-plugin": "^0.1.0 || ^0.2.0",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "@webgpu/types": "^0.1.72",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "react-server-dom-webpack": "19.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "1.0.0-beta.3",
+    "vite": "8.0.13",
+    "vite-plugin-singlefile": "^2.3.3",
+    "wrangler": "4.92.0"
+  },
+  "type": "module"
+}

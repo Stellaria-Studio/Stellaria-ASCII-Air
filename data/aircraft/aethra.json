@@ -1,0 +1,1 @@
+{"id":"aethra","name":"AETHRA","role":"LIGHT AIR SUPERIORITY","radar":"SR-20","maxSpeed":760,"turnRate":1.18,"rollRate":1.42,"thrust":1.2,"radarRange":34000,"stealth":0.35,"gunAmmo":520,"missiles":{"ST-1":2,"ST-1X":0,"ST-1AX":4},"silhouette":["       /\\       ","  ____/  \\____  ","<====  ##  ====>","    \\______/    "]}

@@ -1,0 +1,8 @@
+{
+  "name": "st.webgpu",
+  "sourceLanguage": "StSL",
+  "target": "wgsl",
+  "features": ["vertex", "fragment", "sampled-texture", "uniform-buffer"],
+  "forbidden": ["ray-tracing", "subgroup", "bindless", "64-bit-atomics", "native-pointers"],
+  "limits": { "sampledTexturesPerStage": 8, "storageBuffersPerStage": 4 }
+}

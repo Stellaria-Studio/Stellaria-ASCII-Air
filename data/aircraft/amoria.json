@@ -1,0 +1,1 @@
+{"id":"amoria","name":"AMORIA","role":"STEALTH HEAVY FIGHTER","radar":"SR-40A","maxSpeed":820,"turnRate":1.0,"rollRate":1.12,"thrust":1.3,"radarRange":52000,"stealth":0.82,"gunAmmo":420,"missiles":{"ST-1":2,"ST-1X":0,"ST-1AX":6},"silhouette":["      /\\ /\\      "," ____/  V  \\____ ","<===   ####   ===>","   \\________/   "]}

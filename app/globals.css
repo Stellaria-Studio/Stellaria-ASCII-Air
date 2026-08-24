@@ -1,0 +1,110 @@
+:root { --green: #80ffba; --green-dim: #4eaa75; --amber: #ffbd62; --red: #ff625f; --ink: #010805; --panel: rgba(2, 17, 11, .88); }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; overflow: hidden; background: var(--ink); }
+body { color: var(--green); font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace; }
+button, select, input { font: inherit; }
+button { color: inherit; }
+
+.game-shell { position: fixed; inset: 0; overflow: hidden; isolation: isolate; background: var(--ink); }
+.game-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.game-canvas.source { z-index: 1; opacity: 1; }
+.game-canvas.source.gpu-active { opacity: 0; pointer-events: none; }
+.game-canvas.gpu { z-index: 2; opacity: 0; pointer-events: none; }
+.game-canvas.gpu.ready { opacity: 1; pointer-events: auto; }
+.crt-overlay { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: .22; background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0, 0, 0, .68) 4px); box-shadow: inset 0 0 150px rgba(0, 0, 0, .75); }
+.panel-screen { position: absolute; inset: 0; z-index: 8; background: radial-gradient(circle at 50% 48%, rgba(2, 27, 17, .22), rgba(1, 8, 5, .7) 65%), linear-gradient(180deg, rgba(1, 9, 6, .62), rgba(1, 9, 6, .25)); }
+.micro { color: var(--green-dim); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; }
+i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 9px var(--green); }
+
+.landing-header, .landing-footer, .loadout-header, .loadout-bar { position: absolute; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; border-color: rgba(128,255,186,.34); background: rgba(1, 12, 8, .82); backdrop-filter: blur(5px); }
+.landing-header { top: 0; height: 84px; padding: 0 clamp(20px, 3.5vw, 58px); border-bottom: 1px solid; }
+.landing-header h1, .loadout-header h1 { margin: 1px 0 0; font-family: var(--font-geist-sans), system-ui, sans-serif; letter-spacing: .04em; line-height: .9; }
+.landing-header h1 { font-size: clamp(25px, 3vw, 41px); }
+.ready { color: var(--green-dim); font-size: 10px; letter-spacing: .15em; }
+.landing-copy { position: absolute; left: 50%; top: 49%; width: min(800px, calc(100% - 130px)); transform: translate(-50%, -50%); text-align: center; }
+.landing-copy h2 { margin: 18px 0 0; font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: clamp(38px, 6.6vw, 92px); line-height: .93; letter-spacing: -.055em; text-shadow: 0 0 34px rgba(91,255,167,.22); }
+.landing-copy h2 em { color: transparent; font-style: normal; -webkit-text-stroke: 1px rgba(128,255,186,.88); }
+.landing-copy p { width: min(590px, 100%); margin: 25px auto 30px; color: rgba(170,255,208,.72); font-size: clamp(11px, 1.15vw, 14px); line-height: 1.8; }
+.primary-action, .secondary-action { min-width: 220px; border: 1px solid var(--green); padding: 14px 18px; cursor: pointer; letter-spacing: .12em; transition: .16s ease; }
+.primary-action { color: #021109; background: var(--green); }
+.primary-action:hover { color: var(--green); background: rgba(2,17,9,.8); box-shadow: 0 0 28px rgba(82,255,157,.2); }
+.primary-action b { margin-left: 26px; }
+.guide-link { display: block; width: max-content; margin: 16px auto 0; color: var(--green-dim); font-size: 10px; letter-spacing: .14em; text-decoration: none; }
+.guide-link:hover { color: var(--amber); }
+.secondary-action { color: var(--green); background: transparent; }
+.secondary-action:hover { background: rgba(128,255,186,.08); }
+.landing-footer { bottom: 0; height: 42px; padding: 0 clamp(16px, 3vw, 44px); border-top: 1px solid; color: var(--green-dim); font-size: 10px; letter-spacing: .13em; }
+
+.loadout { padding: 102px clamp(18px, 4vw, 60px) 100px; }
+.loadout-header { top: 0; height: 82px; padding: 0 clamp(18px, 4vw, 60px); border-bottom: 1px solid; }
+.loadout-header h1 { font-size: 29px; }
+.text-button { border: 0; padding: 8px; color: var(--green-dim); background: transparent; cursor: pointer; font-size: 10px; letter-spacing: .12em; }
+.text-button:hover { color: var(--green); }
+.loadout-grid { display: grid; width: min(1320px, 100%); height: 100%; margin: auto; grid-template-columns: 220px minmax(330px, 1fr) 310px; gap: clamp(18px, 3vw, 42px); }
+.aircraft-tabs { display: flex; flex-direction: column; gap: 9px; }
+.aircraft-tabs button { display: grid; gap: 5px; border: 1px solid rgba(128,255,186,.18); padding: 17px; text-align: left; background: rgba(1,12,8,.62); cursor: pointer; }
+.aircraft-tabs button.active { border-color: var(--green); background: rgba(53,145,91,.15); box-shadow: inset 3px 0 var(--green); }
+.aircraft-tabs span { letter-spacing: .14em; }
+.aircraft-tabs small { color: var(--green-dim); font-size: 8px; }
+.aircraft-preview { position: relative; display: grid; place-content: center; min-height: 300px; border: 1px solid rgba(128,255,186,.25); background: radial-gradient(circle, rgba(49,128,82,.15), transparent 63%), rgba(1,9,6,.58); text-align: center; overflow: hidden; }
+.aircraft-preview::before, .aircraft-preview::after { content: ''; position: absolute; left: 50%; top: 50%; border: 1px solid rgba(128,255,186,.13); border-radius: 50%; transform: translate(-50%,-50%); }
+.aircraft-preview::before { width: min(50vw, 420px); aspect-ratio: 1; }
+.aircraft-preview::after { width: min(31vw, 260px); aspect-ratio: 1; }
+.preview-brackets { position: absolute; inset: 28px; border: solid rgba(128,255,186,.33); border-width: 1px 0; }
+.aircraft-preview pre { position: relative; z-index: 2; margin: 0 0 35px; color: var(--green); font: 600 clamp(11px, 1.5vw, 21px)/1.35 ui-monospace, monospace; text-shadow: 0 0 18px rgba(89,255,163,.35); transform: perspective(700px) rotateX(8deg); animation: aircraft-float 4.5s ease-in-out infinite; }
+.aircraft-preview > .micro { position: relative; z-index: 2; }
+.stats { position: absolute; left: 22px; right: 22px; bottom: 18px; z-index: 3; display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; border-top: 1px solid rgba(128,255,186,.25); padding-top: 12px; }
+.stats span { display: grid; gap: 3px; color: var(--green-dim); font-size: 8px; }
+.stats b { color: var(--green); font-size: 11px; font-weight: 500; }
+@keyframes aircraft-float { 0%,100% { transform: perspective(700px) rotateX(8deg) translateY(-4px); } 50% { transform: perspective(700px) rotateX(8deg) translateY(5px); } }
+.config-column { display: flex; flex-direction: column; gap: 16px; overflow: auto; }
+.config-block { display: grid; gap: 13px; border: 1px solid rgba(128,255,186,.23); padding: 18px; background: rgba(1,12,8,.7); }
+.config-block label { display: grid; grid-template-columns: 74px 1fr auto; align-items: center; gap: 10px; color: var(--green-dim); font-size: 9px; letter-spacing: .1em; }
+.config-block select { min-width: 0; border: 1px solid rgba(128,255,186,.32); padding: 7px; color: var(--green); background: #03140d; }
+.config-block input[type='range'] { width: 100%; accent-color: var(--green); }
+.config-block label.check { display: flex; }
+.check input { accent-color: var(--green); }
+.loadout-bar { bottom: 0; min-height: 78px; padding: 12px clamp(18px, 4vw, 60px); border-top: 1px solid; }
+.loadout-bar p { margin: 5px 0 0; color: rgba(161,255,202,.7); font-size: 10px; letter-spacing: .08em; }
+
+.play-meta, .controls-hint, .weapon-descriptor { position: absolute; z-index: 6; color: var(--green-dim); font-size: 8px; letter-spacing: .13em; pointer-events: none; }
+.play-meta { left: 18px; right: 18px; top: 13px; display: flex; justify-content: space-between; padding: 5px 8px; background: linear-gradient(90deg, rgba(1,10,6,.7), transparent 28%, transparent 72%, rgba(1,10,6,.7)); }
+.gpu-badge { display: flex; align-items: center; gap: 8px; }
+.controls-hint { left: 50%; bottom: 10px; transform: translateX(-50%); padding: 6px 12px; border-top: 1px solid rgba(128,255,186,.22); background: rgba(1,10,6,.72); white-space: nowrap; }
+.weapon-descriptor { left: 50%; bottom: 118px; transform: translateX(-50%); color: rgba(255,189,98,.72); }
+.mobile-controls { display: none; }
+
+.modal-backdrop { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; background: rgba(0,7,4,.74); backdrop-filter: blur(6px); }
+.modal { width: min(440px, calc(100% - 34px)); border: 1px solid rgba(128,255,186,.42); padding: 34px; background: rgba(1,14,9,.95); text-align: center; box-shadow: 0 22px 70px rgba(0,0,0,.5); }
+.modal h2 { margin: 12px 0; font: 600 30px var(--font-geist-sans), system-ui, sans-serif; letter-spacing: .03em; }
+.modal p { margin: 0 0 24px; color: var(--green-dim); font-size: 11px; line-height: 1.7; }
+.modal .primary-action, .modal .secondary-action { display: block; width: 100%; margin: 9px 0; }
+
+@media (max-width: 900px) {
+  .loadout { padding: 85px 14px 92px; overflow: auto; }
+  .loadout-grid { height: auto; grid-template-columns: 1fr; }
+  .aircraft-tabs { display: grid; grid-template-columns: repeat(3,1fr); }
+  .aircraft-tabs button { padding: 11px; }
+  .aircraft-preview { min-height: 340px; }
+  .config-column { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
+  .loadout-bar p { display: none; }
+  .controls-hint { display: none; }
+}
+
+@media (max-width: 650px) {
+  .landing-copy { width: calc(100% - 34px); }
+  .landing-copy h2 { font-size: clamp(36px, 13vw, 62px); }
+  .landing-footer span:nth-child(2) { display: none; }
+  .aircraft-tabs { grid-template-columns: 1fr; }
+  .aircraft-tabs small { display: none; }
+  .aircraft-preview { min-height: 290px; }
+  .config-column { grid-template-columns: 1fr; }
+  .loadout-header h1 { font-size: 20px; }
+  .loadout-bar { justify-content: center; }
+  .loadout-bar > div { display: none; }
+  .mobile-controls { position: absolute; left: 15px; right: 15px; bottom: 24px; z-index: 7; display: flex; justify-content: space-between; }
+  .mobile-controls button { width: 78px; height: 48px; border: 1px solid rgba(128,255,186,.5); background: rgba(1,12,8,.68); }
+  .weapon-descriptor { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) { .aircraft-preview pre { animation: none; } .primary-action { transition: none; } }
