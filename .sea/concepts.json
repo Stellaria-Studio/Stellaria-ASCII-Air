@@ -1,0 +1,35 @@
+[
+  {
+    "id": "project-architecture",
+    "name": "Stellaria-ASCII-Air architecture",
+    "aliases": [
+      "Stellaria-ASCII-Air",
+      "ASCII-Air",
+      "架构",
+      "职责"
+    ],
+    "intent": "A standalone ASCII-styled 3D air-combat Web App with StSL/WebGPU presentation.",
+    "qualification": "DECLARED_PROJECT_KNOWLEDGE",
+    "invariants": [
+      "Source and project contracts remain authoritative; declared capabilities need matching execution evidence."
+    ],
+    "implementationPaths": [
+      "app",
+      "game",
+      "engine"
+    ],
+    "dependsOn": [],
+    "acceptanceGates": [
+      "source identity",
+      "declared validation is not execution evidence"
+    ],
+    "sources": [
+      {
+        "path": "README.md",
+        "line": 1,
+        "commit": "6ee008cbe98d9f8b1a98fe8b89dade5b97dc3531"
+      }
+    ],
+    "validation": []
+  }
+]

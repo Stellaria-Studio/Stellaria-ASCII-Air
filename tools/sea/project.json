@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "name": "Stellaria-ASCII-Air",
+  "components": {
+    "project": {
+      "description": "A standalone ASCII-styled 3D air-combat Web App with StSL/WebGPU presentation.",
+      "paths": [
+        "app",
+        "game",
+        "engine"
+      ],
+      "approved": [
+        "README.md"
+      ],
+      "required_files": [
+        "README.md"
+      ],
+      "build_targets": [],
+      "validation": [],
+      "pitfalls": [
+        "Source and project contracts remain authoritative; declared capabilities need matching execution evidence."
+      ],
+      "evidence": []
+    }
+  },
+  "build_metadata": [
+    "package.json"
+  ]
+}

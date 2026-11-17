@@ -1,0 +1,35 @@
+{
+  "schema": "stellaria.sea.project.v2",
+  "id": "Stellaria-Studio/Stellaria-ASCII-Air",
+  "name": "Stellaria-ASCII-Air",
+  "repository": "Stellaria-Studio/Stellaria-ASCII-Air",
+  "defaultBranch": "main",
+  "tier": "C",
+  "profile": "knowledge-runtime",
+  "purpose": "A standalone ASCII-styled 3D air-combat Web App with StSL/WebGPU presentation.",
+  "visibility": "public",
+  "concepts": ".sea/concepts.json",
+  "invariants": [
+    "Source and project contracts remain authoritative; declared capabilities need matching execution evidence."
+  ],
+  "runtime": {
+    "repository": "Stellaria-Studio/Stellaria-SEA",
+    "version": "2.0.0",
+    "protocol": 2,
+    "sourceCommit": "6207b585ffabb8d182432bb3a03ba4d0a5279aa6"
+  },
+  "legacy": {
+    "definition": "tools/sea/project.json",
+    "history": "read-only; preserve original bytes"
+  },
+  "features": {
+    "contextBroker": true,
+    "architectureRegistry": true,
+    "localTaskCapsules": true,
+    "identityBinding": false,
+    "approvalWorkflow": false,
+    "enforcement": false,
+    "automaticPush": false
+  },
+  "sourceBaseline": "6ee008cbe98d9f8b1a98fe8b89dade5b97dc3531"
+}
