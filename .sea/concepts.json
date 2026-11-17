@@ -16,7 +16,10 @@
     "implementationPaths": [
       "app",
       "game",
-      "engine"
+      "engine",
+      "next.config.ts",
+      "vite.config.ts",
+      "vite.standalone.config.ts"
     ],
     "dependsOn": [],
     "acceptanceGates": [
